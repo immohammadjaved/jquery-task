@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Links</title>
+</head>
+<body>
+    
+    <a href="http://google.com" class="link">Google</a>
+    <a href="http://facebook.com" class="link">Facebook</a>
+    <a href="http://linkedin.com" class="link">LinkedIn</a>
+    <a href="http://twitter.com" class="link">Twitter</a>
+    <a href="http://instagram.com" class="link">Instagram</a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        $('.link').on('click', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var link = $this.attr('href');
+            setToLocalStorage(link);
+            $(location).attr('href', link);
+        });
+
+        function setToLocalStorage(link) {
+            var links = localStorage.getItem('links');
+            var storageLinks = [];
+
+            if (links) {
+                storageLinks = JSON.parse(links);
+            }
+
+            storageLinks.push(link);
+            localStorage.setItem('links', JSON.stringify(storageLinks));
+        } 
+    </script>
+</body>
+</html>
